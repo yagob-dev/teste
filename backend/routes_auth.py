@@ -51,11 +51,11 @@ def register():
     """Endpoint para registro de novos usuários (apenas para desenvolvimento)."""
     data = request.get_json() or {}
 
-    obrigatorios = ["usuario", "senha", "nome", "cpf", "telefone"]
+    obrigatorios = ["usuario", "senha"]
     if not all(data.get(c) for c in obrigatorios):
         return jsonify({
             "erro": "Dados inválidos",
-            "mensagem": "Usuário, senha, nome, CPF e telefone são obrigatórios"
+            "mensagem": "Usuário e senha são obrigatórios"
         }), 400
 
     # Verifica se usuário já existe
@@ -85,8 +85,8 @@ def register():
     user = Usuario(
         usuario=data["usuario"].strip(),
         senha_hash=generate_password_hash(data["senha"]),
-        nome=data["nome"].strip(),
-        cpf=cpf_limpo,
+        nome=(data.get("nome") or "").strip() or None,
+        cpf=cpf_limpo or None,
         telefone=(data.get("telefone") or "").strip() or None,
         email=(data.get("email") or "").strip() or None,
         ativo=True
