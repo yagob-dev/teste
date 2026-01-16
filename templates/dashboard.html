@@ -1,0 +1,734 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - TechAI Assist{% endblock %}
+
+{% set active_page = 'dashboard' %}
+
+{% block content %}
+    <div class="dashboard-container">
+        <!-- HERO SECTION -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="welcome-message">
+                <h1>Bem-vindo ao <span class="brand-highlight">TechAI Assist</span></h1>
+                <p class="hero-subtitle">Seu sistema completo de gestão para assistência técnica inteligente</p>
+                <div class="user-greeting" id="userGreeting">
+                    <!-- Saudação personalizada será inserida aqui -->
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <button class="cta-button primary" onclick="window.location.href='/atendimento'">
+                    🚀 Começar Agora
+                </button>
+                <button class="cta-button secondary" onclick="window.location.href='/clientes'">
+                    👥 Cadastrar Primeiro Cliente
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="feature-showcase">
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h4>IA Integrada</h4>
+                    <p>Assistente inteligente para otimizar seus processos</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Rápido & Eficiente</h4>
+                    <p>Interface intuitiva para máxima produtividade</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h4>Relatórios Completos</h4>
+                    <p>Análises detalhadas do seu negócio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULES SHOWCASE -->
+    <div class="modules-section">
+        <div class="section-header">
+            <h2>🛠️ Módulos Principais</h2>
+            <p>Descubra todas as funcionalidades do seu sistema de gestão</p>
+        </div>
+
+        <div class="modules-grid">
+            <div class="module-card featured" onclick="window.location.href='/atendimento'">
+                <div class="module-icon">⚙️</div>
+                <div class="module-content">
+                    <h3>Centro de Atendimento</h3>
+                    <p>Gerencie todas as operações diárias da sua assistência técnica com eficiência e organização.</p>
+                    <div class="module-features">
+                        <span>📋 Ordens de Serviço</span>
+                        <span>🔧 Reparos</span>
+                        <span>⏰ Agendamentos</span>
+                    </div>
+                </div>
+                <div class="module-arrow">→</div>
+            </div>
+
+            <div class="module-card" onclick="window.location.href='/clientes'">
+                <div class="module-icon">👥</div>
+                <div class="module-content">
+                    <h3>Gestão de Clientes</h3>
+                    <p>Mantenha um cadastro completo dos seus clientes com histórico de serviços e informações de contato.</p>
+                </div>
+                <div class="module-arrow">→</div>
+            </div>
+
+            <div class="module-card" onclick="window.location.href='/estoque'">
+                <div class="module-icon">📦</div>
+                <div class="module-content">
+                    <h3>Controle de Estoque</h3>
+                    <p>Acompanhe peças, produtos e materiais com alertas automáticos de reposição.</p>
+                </div>
+                <div class="module-arrow">→</div>
+            </div>
+
+            <div class="module-card" onclick="window.location.href='/os'">
+                <div class="module-icon">📋</div>
+                <div class="module-content">
+                    <h3>Ordens de Serviço</h3>
+                    <p>Sistema completo para criação, acompanhamento e finalização de serviços.</p>
+                </div>
+                <div class="module-arrow">→</div>
+            </div>
+
+            <div class="module-card" onclick="window.location.href='/financeiro'">
+                <div class="module-icon">💰</div>
+                <div class="module-content">
+                    <h3>Financeiro</h3>
+                    <p>Controle financeiro completo com relatórios de receitas, despesas e lucratividade.</p>
+                </div>
+                <div class="module-arrow">→</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GET STARTED SECTION -->
+    <div class="getting-started-section">
+        <div class="getting-started-content">
+            <h2>🚀 Como Começar</h2>
+            <p>Em poucos passos você estará operando com eficiência máxima</p>
+
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Cadastre seus clientes</h4>
+                        <p>Comece adicionando os clientes que já atende</p>
+                        <button class="step-button" onclick="window.location.href='/clientes'">Adicionar Cliente</button>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Configure seu estoque</h4>
+                        <p>Cadastre peças e produtos que utiliza</p>
+                        <button class="step-button" onclick="window.location.href='/estoque'">Configurar Estoque</button>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Comece a atender</h4>
+                        <p>Abra sua primeira ordem de serviço</p>
+                        <button class="step-button primary" onclick="window.location.href='/atendimento'">Criar OS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BENEFITS SECTION -->
+    <div class="benefits-section">
+        <div class="benefits-content">
+            <h2>✨ Por que escolher TechAI Assist?</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>Processos Otimizados</h4>
+                    <p>Automatize tarefas repetitivas e foque no que realmente importa: atender bem seus clientes.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <h4>Crescimento Sustentável</h4>
+                    <p>Acompanhe métricas importantes e tome decisões baseadas em dados reais.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <h4>Segurança Total</h4>
+                    <p>Seus dados estão protegidos com as melhores práticas de segurança da informação.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📱</div>
+                    <h4>Acesso Anywhere</h4>
+                    <p>Gerencie seu negócio de qualquer lugar com nosso sistema web responsivo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script>
+        // ========================================
+        // SCRIPT DA LANDING PAGE (DASHBOARD)
+        // ========================================
+
+        /**
+         * Renderiza saudação personalizada
+         */
+        function renderizarSaudacao() {
+            const userGreeting = document.getElementById('userGreeting');
+            const agora = new Date();
+            const hora = agora.getHours();
+
+            let saudacao = 'Olá';
+            if (hora >= 6 && hora < 12) {
+                saudacao = 'Bom dia';
+            } else if (hora >= 12 && hora < 18) {
+                saudacao = 'Boa tarde';
+            } else {
+                saudacao = 'Boa noite';
+            }
+
+            // Tenta obter nome do usuário do localStorage ou usa valor padrão
+            const userData = JSON.parse(localStorage.getItem('user') || '{}');
+            const nomeUsuario = userData.nome || userData.username || 'Usuário';
+
+            userGreeting.innerHTML = `
+                <div class="greeting-content">
+                    <p class="greeting-text">${saudacao}, <span class="user-name">${nomeUsuario}</span>! 👋</p>
+                    <p class="greeting-subtitle">Que bom ter você de volta no seu sistema de gestão.</p>
+                </div>
+            `;
+        }
+
+        // ============================
+        // INICIALIZAÇÃO
+        // ============================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Protege a página
+            protegerPagina();
+
+            // Renderiza saudação personalizada
+            renderizarSaudacao();
+
+            console.log('✅ Landing page carregada!');
+        });
+    </script>
+
+    <style>
+        /* LANDING PAGE STYLES */
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 80px 0;
+            min-height: 70vh;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .welcome-message h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .brand-highlight {
+            background: linear-gradient(135deg, var(--primary-blue), #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .user-greeting {
+            margin-top: 20px;
+        }
+
+        .greeting-content {
+            background: var(--bg-primary);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .greeting-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 8px 0;
+        }
+
+        .user-name {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .greeting-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-blue), #0891b2);
+            color: white;
+            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .cta-button.secondary:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feature-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 400px;
+        }
+
+        .feature-item {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-item h4 {
+            color: var(--text-primary);
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* MODULES SECTION */
+        .modules-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .module-card {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px var(--shadow-color);
+            border-color: var(--primary-blue);
+        }
+
+        .module-card.featured {
+            border-color: var(--primary-blue);
+            box-shadow: 0 8px 24px rgba(8, 145, 178, 0.2);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .module-content h3 {
+            color: var(--text-primary);
+            margin: 0 0 12px 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .module-content p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .module-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .module-features span {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .module-arrow {
+            align-self: flex-end;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover .module-arrow {
+            transform: translateX(4px);
+        }
+
+        /* GETTING STARTED SECTION */
+        .getting-started-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .getting-started-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .getting-started-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+        }
+
+        .getting-started-content > p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 0 0 60px 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), #0891b2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-content {
+            text-align: center;
+        }
+
+        .step-content h4 {
+            color: var(--text-primary);
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+
+        .step-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .step-button:not(.primary) {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .step-button:not(.primary):hover {
+            border-color: var(--primary-blue);
+        }
+
+        .step-button.primary {
+            background: linear-gradient(135deg, var(--primary-blue), #0891b2);
+            color: white;
+        }
+
+        /* BENEFITS SECTION */
+        .benefits-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .benefits-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .benefits-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 60px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            background: var(--bg-primary);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 2px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-item h4 {
+            color: var(--text-primary);
+            margin: 0 0 16px 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .benefit-item p {
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .welcome-message h1 {
+                font-size: 2.5rem;
+            }
+
+            .feature-showcase {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0;
+                min-height: auto;
+            }
+
+            .welcome-message h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .getting-started-content h2 {
+                font-size: 2rem;
+            }
+
+            .benefits-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 30px 0;
+            }
+
+            .welcome-message h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .feature-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+{% endblock %}

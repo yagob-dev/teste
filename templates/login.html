@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login - TechAI Assist</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a página de login */
+        body {
+            background: linear-gradient(135deg, #1e3a8a 0%, #088bab 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: #18415b;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 50px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 220px;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            color: rgba(255, 255, 255, 0);
+            font-size: 48px;
+            font-weight: bold;
+            
+        }
+
+        .login-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .login-subtitle {
+            color: var(--gray-medium);
+            font-size: 13px;
+            margin-bottom: 21px;
+        }
+
+        .login-form {
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray-dark);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f9fafb;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+        }
+
+        .login-btn:disabled {
+            background: var(--gray-medium);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border-left: 4px solid #10b981;
+            display: none;
+        }
+
+        .login-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: var(--gray-medium);
+            font-size: 14px;
+        }
+
+        .demo-credentials {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .demo-credentials strong {
+            color: var(--dark-blue);
+        }
+
+        .loading {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--gray-medium);
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e7eb;
+            border-top: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .create-account-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .create-account-link p {
+            color: #ffffff;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .create-account-link a {
+            color: #088bab;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .create-account-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Logo e Título -->
+        <div class="">
+            <img src="/img/logo.svg" alt="Logo TechAI Assist">
+        </div>
+        <h1 class="login-title" style="color: #f0f0f0;"> TechAI Assist </h1>
+
+        <!-- Mensagens de Erro/Sucesso -->
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+
+        <!-- Formulário de Login -->
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="usuario"></label>
+                <input 
+                    type="text" 
+                    id="usuario" 
+                    name="usuario" 
+                    placeholder="Usuário"
+                    required
+                    autocomplete="username"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="senha"></label>
+                <input 
+                    type="password" 
+                    id="senha" 
+                    name="senha" 
+                    placeholder="Senha"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" id="loginBtn" class="login-btn">
+                <span id="btnText">Entrar</span>
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <span>Entrando...</span>
+                </div>
+            </button>
+        </form>
+
+        <!-- Link para criar conta -->
+        <div class="create-account-link">
+            <p>Não tem uma conta? <a href="#" id="createAccountLink">Criar nova conta</a></p>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="login-footer">
+            <p style="color: rgb(255, 255, 255);">© 2025 TechAI Assist - Curso Full Stack Senac</p>
+            <p style="color: rgb(255, 255, 255);">Desenvolvido para fins educacionais</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/storage.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        // ========================================
+        // SCRIPT DA PÁGINA DE LOGIN
+        // ========================================
+
+        // Elementos do DOM
+        const loginForm = document.getElementById('loginForm');
+        const usuarioInput = document.getElementById('usuario');
+        const senhaInput = document.getElementById('senha');
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const loading = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // ============================
+        // FUNÇÕES DE INTERFACE
+        // ============================
+
+        /**
+         * Mostra mensagem de erro
+         * @param {string} mensagem - Mensagem a ser exibida
+         */
+        function mostrarErro(mensagem) {
+            errorMessage.textContent = mensagem;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+
+        /**
+         * Mostra mensagem de sucesso
+         * @param {string} mensagem - Mensagem a ser exibida
+         */
+        function mostrarSucesso(mensagem) {
+            successMessage.textContent = mensagem;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        /**
+         * Esconde todas as mensagens
+         */
+        function esconderMensagens() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+
+        /**
+         * Ativa/desativa estado de carregamento
+         * @param {boolean} ativo - Se deve mostrar loading
+         */
+        function toggleLoading(ativo) {
+            if (ativo) {
+                loginBtn.disabled = true;
+                btnText.style.display = 'none';
+                loading.style.display = 'flex';
+            } else {
+                loginBtn.disabled = false;
+                btnText.style.display = 'block';
+                loading.style.display = 'none';
+            }
+        }
+
+        /**
+         * Limpa o formulário
+         */
+        function limparFormulario() {
+            loginForm.reset();
+            esconderMensagens();
+        }
+
+        // ============================
+        // EVENTOS
+        // ============================
+
+        // Evento de submit do formulário
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Esconde mensagens anteriores
+            esconderMensagens();
+
+            // Pega os valores dos campos
+            const usuario = usuarioInput.value.trim();
+            const senha = senhaInput.value.trim();
+
+            // Validação básica
+            if (!usuario || !senha) {
+                mostrarErro('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Ativa loading
+            toggleLoading(true);
+
+            try {
+                // Tenta fazer login via API
+                await fazerLogin(usuario, senha);
+
+                mostrarSucesso('Login realizado com sucesso! Redirecionando...');
+
+                // Redireciona após 1 segundo
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1000);
+
+            } catch (error) {
+                console.error('Erro no login:', error);
+                mostrarErro(error.message || 'Erro ao fazer login. Tente novamente.');
+                toggleLoading(false);
+            }
+        });
+
+        // Evento de tecla Enter no campo senha
+        senhaInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Evento de foco nos campos (remove mensagens de erro)
+        usuarioInput.addEventListener('focus', esconderMensagens);
+        senhaInput.addEventListener('focus', esconderMensagens);
+
+        // ============================
+        // INICIALIZAÇÃO
+        // ============================
+
+        // Verifica se já está logado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se já estiver logado, redireciona
+            redirecionarSeLogado();
+            
+            // Foca no campo usuário
+            usuarioInput.focus();
+            
+            console.log('✅ Página de login carregada!');
+        });
+
+        // ============================
+        // FUNÇÕES AUXILIARES
+        // ============================
+
+        // Função para lidar com o clique no link "Criar nova conta"
+        document.getElementById('createAccountLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/register';
+        });
+    </script>
+</body>
+
+</html>
